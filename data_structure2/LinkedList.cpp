@@ -5,7 +5,7 @@
 void Init(List *list){ 
 	list->count = 0; 
 	list->head = NULL;
-} //¸®½ºÆ®¸¦ °¡Á®¿Ô°í ¸®½ºÆ®´Ï±î Æ÷ÀÎÅÍ·Î count º¯¼ö¿¡ Á¢±ÙÇÑ´Ù
+} //ë¦¬ìŠ¤íŠ¸ë¥¼ ê°€ì ¸ì™”ê³  ë¦¬ìŠ¤íŠ¸ë‹ˆê¹Œ í¬ì¸í„°ë¡œ count ë³€ìˆ˜ì— ì ‘ê·¼í•œë‹¤
 
 int Length(List *list) { return list->count; }
 int isEmpty(List *list) { 
@@ -15,7 +15,7 @@ int isEmpty(List *list) {
 	//return (list->count == 0);
 }
 
-void Insert(List *list, int position, int item){
+void Insert(List *list, int position, element item){
 	if (position < 1 || position > list->count + 1){
 		printf("out of range\n");
 	}
@@ -23,7 +23,7 @@ void Insert(List *list, int position, int item){
 		Node *neww = (Node *)malloc(sizeof(Node));
 		neww->data = item;
 
-		if (position == 1){ //Ã³À½ ³ëµå¿¡ ³ÖÀ» ¶§´Â head·Î ÇÏ´Âµ¥ ±× ´ÙÀ½ºÎÅÍ´Â ³ëµå³¢¸® ÇÏ´Ï±î °æ¿ì¸¦ ³ª´®
+		if (position == 1){ //ì²˜ìŒ ë…¸ë“œì— ë„£ì„ ë•ŒëŠ” headë¡œ í•˜ëŠ”ë° ê·¸ ë‹¤ìŒë¶€í„°ëŠ” ë…¸ë“œë¼ë¦¬ í•˜ë‹ˆê¹Œ ê²½ìš°ë¥¼ ë‚˜ëˆ”
 			neww->next = list->head;
 			list->head = neww;
 		}
@@ -39,40 +39,95 @@ void Insert(List *list, int position, int item){
 	}
 }
 
-//void Delete(List *list, int position){
-//	if (isEmpty(list)) printf("list empty");
-//	else if (position < 1 || position > list->count + 1){
-//		printf("out of range\n");
-//	}
-//	else {
-////		printf("ee%d\n", list->count);
-//		for (int i = position; i <= list->count - 1; i++){
-//			list->data[i - 1] = list->data[i];
-//		}
-//
-//		list->count--;
-//	}
-//}
-
-void Retrieve(List *list, int position, element *result){
-	if (isEmpty(list)) printf("list empty\n");
-	else if (position < 1 || position > list->count + 1){
+void Delete(List *list, int position){
+	if (isEmpty(list)) printf("list empty");
+	else if (position < 1 || position > list->count){
 		printf("out of range\n");
 	}
 	else {
-		*result = list->data[position - 1];
+		Node *d;
+		if (position == 1){
+			d = list->head;
+			list->head = d->next;
+		}
+		else{
+			Node *temp = list->head;
+			for (int i = 1; i < position - 1; i++){
+				temp = temp->next;
+			}
+
+			d = temp->next;
+			temp->next = d->next;
+		}
+
+		free(d);
+		list->count--;
+	}
+}
+
+void Delete_all(List *list){
+	Node *temp = list->head; //ì‚­ì œí•  ë…¸ë“œ
+	int ii = 1;
+	for (int i = 1; i <= list->count; i++){
+		printf("List[%d] : %C delete\n", ii, temp->data);
+		temp = temp->next;
+		Delete(list, i);
+		i--;
+		ii++;
+
+	}
+}
+
+void Retrieve(List *list, int position, element *result){
+	if (isEmpty(list)) printf("list empty\n");
+	else if (position < 1 || position > list->count){
+		//ë„£ì„ ë•ŒëŠ” countë³´ë‹¤ í•œì¹¸ ë‹¤ìŒê¹Œì§€ ë„£ì„ ìˆ˜ ìžˆëŠ”ë° ì‚­ì œí•  ë•ŒëŠ” ë”± ê·¸ ê°œìˆ˜ë§Œí¼ë§Œ ê°€ëŠ¥í•˜ë‹ˆê¹Œ +1ì„ í•˜ì§€ ì•ŠëŠ”ë‹¤ 
+		printf("out of range\n");
+	}
+	else {
+		Node *temp = list->head;
+		for (int i = 1; i < position ; i++){
+			temp = temp->next;
+		}
+		*result = temp->data;
 	}
 }
 
 void Display(List *list){
 	if (isEmpty(list)) printf("list empty\n");
 	else {
-		int i;
-		for (i = 0; i < list->count; i++){
-			printf("List[%d] : %c\n", i + 1, list->data[i]);
-		}
-		for (i; i < MAX; i++){
-			printf("List[%d] : empty\n", i + 1);
+		Node *temp = list->head;
+		for (int i = 0; i < list->count; i++){
+			printf("List[%d] : %c\n", i+1, temp->data);
+			temp = temp->next;
 		}
 	}
 }
+
+//void Delete_item(List *list, char item){
+//
+//	for (int i = 1; i < list->count; i++){
+//		if ()
+//	}
+//
+//
+//	Node *d;
+//	if (position == 1){
+//		d = list->head;
+//		list->head = d->next;
+//	}
+//	else{
+//		Node *temp = list->head;
+//		for (int i = 1; i < position - 1; i++){
+//			temp = temp->next;
+//		}
+//
+//		d = temp->next;
+//		temp->next = d->next;
+//	}
+//
+//	free(d);
+//	list->count--;
+//
+//}
+
