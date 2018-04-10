@@ -3,28 +3,36 @@
 #include "LinkedList.h"
 
 int main(){
-	List list1; //¸®½ºÆ®Çü º¯¼ö
-	element result; //°Ë»öÇÑ °á°ú°¡ ÀúÀåµÇ´Â º¯¼ö
+	List list1; //ë¦¬ìŠ¤íŠ¸í˜• ë³€ìˆ˜
+	element result; //ê²€ìƒ‰í•œ ê²°ê³¼ê°€ ì €ì¥ë˜ëŠ” ë³€ìˆ˜
 
-	Init(&list1); //Ç×¸ñ¼ö 0À¸·Î ÃÊ±âÈ­
+	Init(&list1); //í•­ëª©ìˆ˜ 0ìœ¼ë¡œ ì´ˆê¸°í™”
 
-	Insert(&list1, 1, 'A'); //Ã¹¹øÂ° À§Ä¡¿¡ 'A'»ğÀÔ
-	Insert(&list1, 2, 'C'); //µÎ¹øÂ° À§Ä¡¿¡ 'C'»ğÀÔ
-	Insert(&list1, 3, 'E'); //¼¼¹øÂ° À§Ä¡¿¡ 'E'»ğÀÔ
-	Insert(&list1, 2, 'B'); //µÎ¹øÂ° À§Ä¡¿¡ 'B'»ğÀÔ
-	Insert(&list1, 4, 'D'); //³×¹øÂ° À§Ä¡¿¡ 'D'»ğÀÔ
+	Insert(&list1, 1, 'A'); //ì²«ë²ˆì§¸ ìœ„ì¹˜ì— 'A'ì‚½ì…
+	Insert(&list1, 2, 'C'); //ë‘ë²ˆì§¸ ìœ„ì¹˜ì— 'C'ì‚½ì…
+	Insert(&list1, 3, 'E'); //ì„¸ë²ˆì§¸ ìœ„ì¹˜ì— 'E'ì‚½ì…
+	Insert(&list1, 2, 'B'); //ë‘ë²ˆì§¸ ìœ„ì¹˜ì— 'B'ì‚½ì…
+	Insert(&list1, 4, 'D'); //ë„¤ë²ˆì§¸ ìœ„ì¹˜ì— 'D'ì‚½ì…
+	Insert(&list1, 1, 'D'); //ì²«ë²ˆì§¸ ìœ„ì¹˜ì— 'D'ì‚½ì…
 	printf("After insert\n");
 	Display(&list1);
 
-	Delete(&list1, 3); //¼¼¹øÂ° À§Ä¡ÀÇ µ¥ÀÌÅÍ »èÁ¦
+	Delete(&list1, 3); //ì„¸ë²ˆì§¸ ìœ„ì¹˜ì˜ ë°ì´í„° ì‚­ì œ
 	printf("\nAfter delete\n");
 	Display(&list1);
 
 	printf("\nRetrieve_all data\n");
-	for (int i = 1; i <= Length(&list1); i++){
-		Retrieve(&list1, i, &result);
-		printf("%d¹øÂ° Ç×¸ñ : %c\n", i, result);
-	}
+	Retrieve(&list1, 2, &result); //ë‘ë²ˆì§¸ ìœ„ì¹˜ì˜ ë°ì´í„° ê²€ìƒ‰
+	printf("%dë²ˆì§¸ í•­ëª© : %c\n", 2, result);
+
+	//Delete_item(&list1, 'D');
+	//printf("\nAfter delete item 'D'\n");
+	//Display(&list1);
+
+	printf("\nDelete All\n");
+	Delete_all(&list1);
+	printf("\nAfter Delete All\n");
+	Display(&list1);
 
 	printf("\n\n");
 	return 0;
