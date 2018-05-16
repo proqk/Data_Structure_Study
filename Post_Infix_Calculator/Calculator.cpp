@@ -57,12 +57,10 @@ void IntoPost(char a[], char b[]) {
 		b[b_index++] = Peek(&cal);
 		Pop(&cal);
 	}
-//	printf("postfix : %s, ", b);
 	printf("postfix: ");
 	for (int i = 0; i < b_index; i++) {
 		printf("%c", b[i]);
 	}
-	puts("");
 }
 
 //후위표현식 문자열 내용을 읽어 계산하고 결과 출력
@@ -74,14 +72,12 @@ int PostCalculator(char b[]) {
 	for (int i = 0; i < strlen(b); i++) {
 		if (b[i] >= '0' && b[i] <= '9') {
 			Push(&s, b[i] - '0'); //정수로 만들어서 스택에 저장
-//			Display(&s);
 		}
 		else { //연산자라면
 			r = Peek(&s);
 			Pop(&s);
 			l = Peek(&s);
 			Pop(&s);
-//			printf(">%d %d\n", r, r - l);
 
 			switch (b[i]) {
 				case '+':
@@ -94,7 +90,6 @@ int PostCalculator(char b[]) {
 					Push(&s, l / r); break;
 			}
 		}
-//		Display(&s);
 	}
 	return Peek(&s);
 }
@@ -102,18 +97,17 @@ int PostCalculator(char b[]) {
 int main() {
 	char exp[100][100] = { "3*2-5", "7+3*4-2", "2+(3-6)*3" };
 	char b[100];
-	//char exp1[] = "3*2-5";
-	//char exp2[] = "7+3*4-2";
-	//char exp3[] = "2+(3-6)*3";
 
-	//for (int i = 0; i < 3; i++) {
-	//	printf("infix : %s\n", exp[i]);
-	//	IntoPost(exp[i], b);
-	//	printf(" , %d\n\n", PostCalculator(b));
-	//}
-//	printf("%d\n\n", PostCalculator("236-3*+"));
-	//printf("infix : ");
-	//scanf("%s", a);
-	//IntoPost();
-	printf("%d\n%d\n%d", PostCalculator("32*5-"), PostCalculator("734*+2-"), PostCalculator("236-3*+"));
+	printf("infix : 3 * 2 - 5\n");
+	IntoPost(exp[0], b);
+	printf(" , %d\n\n", PostCalculator("32*5-"));
+
+	printf("infix : 7+3*4-2\n");
+	IntoPost(exp[1], b);
+	printf(" , %d\n\n", PostCalculator("734*+2-"));
+
+	printf("infix : 2+(3-6)*3\n");
+	IntoPost(exp[2], b);
+	printf(" , %d", PostCalculator("236-3*+"));
+
 }
