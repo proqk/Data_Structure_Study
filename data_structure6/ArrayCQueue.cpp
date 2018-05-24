@@ -64,11 +64,17 @@ void Display(Queue *q){
 		
 		for (int i = q->front +1 ; i <= q->back; i++){ //앞~뒤 사이 값 출력함
 			printf("%d ", q->data[i]);
-		}
+		} //여기 이렇게 하면 안 되고 돌아가게 해야함
+		/*
+		for(int i=q->front; i!=q->back;i=(i+1)%MAX){
+			printf("%d ", q->data[i]);
+		} 예를 들자면 이런 식으로
+		*/
 
 		printf("] back\n\n");
 	}
 }
+
 
 int main(){
 	Queue q1;
