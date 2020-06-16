@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <stdlib.h>
+
 typedef struct node //구조체 정의
 {
     int data;
@@ -6,7 +9,7 @@ typedef struct node //구조체 정의
 }NODE;
   
 /* newNode(): 노드에 메모리 할당하고 초기화*/
-NODE* newNode(intdata)
+NODE* newNode(int data)
 {
   //노드에 메모리 할당 
   NODE* node = (NODE*)malloc(sizeof(NODE));
