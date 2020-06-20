@@ -153,12 +153,12 @@ int main() {
 	}
 	
 	NODE* root = NULL;
-	root = insert(&root, 50, rand_name[0], 'f');
+	root = insert(&root, 20, rand_name[0], 'f');
 	insert(&root, 30, rand_name[1], 'm');
-	insert(&root, 20, rand_name[2], 'm');
-	insert(&root, 40, rand_name[3], 'f');
-	insert(&root, 70, rand_name[4], 'm');
-	insert(&root, 60, rand_name[5], 'f');
+	insert(&root, 40, rand_name[2], 'm');
+	insert(&root, 50, rand_name[3], 'f');
+	insert(&root, 60, rand_name[4], 'm');
+	insert(&root, 70, rand_name[5], 'f');
 	insert(&root, 80, rand_name[6], 'f');
 
 	printf("모든 사람 오름차순 출력\n");
