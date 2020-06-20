@@ -1,5 +1,5 @@
 /*
-자료구조 과제2
+2019111349 이유진 과제2
 
 20~100사이 난수 뽑음(나이)
 들어온 난수 순서대로 나이를 기준(key)으로 성명, 성별을 갖는 이진탐색트리
@@ -192,7 +192,7 @@ int main() {
 
 		if (i == 0) root = insert(&root, age, rand_name[i], sex);
 		else tmp = insert(&root, age, rand_name[i], sex);
-	} */
+	}
 	
 	//root = insert(&root, 50, nameSet + 0, sex);
 	//insert(&root, 30, nameSet + 1, sex);
